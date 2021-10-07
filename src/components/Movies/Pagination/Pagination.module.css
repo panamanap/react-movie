@@ -1,0 +1,16 @@
+.footerPagination {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex-basis: 60px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+
+.footerPagination li {
+    margin: 10px;
+    cursor: pointer;
+}

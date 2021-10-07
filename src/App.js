@@ -1,45 +1,37 @@
-import React from "react";
-import Header from "./components/Header";
-import Movies from "./components/Movies";
+import React from 'react';
+import Header from './components/Header';
+import Movies from './components/Movies';
+import './index.css';
+
+
 
 function App() {
-  const [movies, setMovies] = React.useState({});
-  const [loading, setLoading] = React.useState(false);
-  const [foundMovie, setFoundMovie] = React.useState("");
+    const [movies, setMovies] = React.useState({});
+    const [searchText, setSearchText] = React.useState('');
+    const [currentPage, setCurrentPage] = React.useState(1);
 
-  React.useEffect(() => {
-    setLoading(true);
-    (async () => {
-      try {
-        const res = await fetch(
-          "https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=Batman&page=2"
-        );
-        const json = await res.json();
-        setMovies(json);
-        setLoading(false);
-      } catch (error) {
-        alert("Ошибка при запросе данных");
-      }
-    })();
-  }, []);
+    React.useEffect(() => {
+        fetch(
+            'https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=Batman&page=2'
+        )
+            .then((res) => res.json())
+            .then((json) => setMovies(json))
+            .catch((e) => alert('Ошибка при запросе данных'));
+    }, []);
 
-  const onSearchMobie = (name) => {
-    setMovies({
-      ...movies,
-      Search: movies.Search.filter((obj) => obj.Title.includes(name))
-    });
-  };
-
-  return (
-    <div className="wrapper">
-      <Header
-        setFoundMovie={setFoundMovie}
-        foundMovie={foundMovie}
-        onSearchMobie={onSearchMobie}
-      />
-      <Movies movies={movies} loading={loading} />
-    </div>
-  );
+    return (
+        <div className="wrapper">
+            <Header setSearchText={setSearchText} searchText={searchText} />
+            <Movies
+                movies={movies.Search?.filter((obj) =>
+                    obj.Title.includes(searchText)
+                )}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
+            
+        </div>
+    );
 }
 
 export default App;

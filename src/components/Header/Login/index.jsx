@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const Login = () => {
-  return <div>Nazar Poliyulhoich</div>;
+    return (
+        <div>
+            <p>Nazar Poliyulhoich</p>
+        </div>
+    );
 };
 
 export default Login;

@@ -1,23 +1,17 @@
 import React from "react";
 
-const SearchBox = ({ setFoundMovie, foundMovie, onSearchMobie }) => {
+const SearchBox = ({ setSearchText, searchText }) => {
   const searchMovie = (e) => {
-    setFoundMovie(e.target.value);
+    setSearchText(e.target.value)
   };
 
-  const onSearchMovie = (e) => {
-    if (e.keyCode === 13) {
-      onSearchMobie(foundMovie);
-    }
-  };
   return (
     <div>
       <input
         type="text"
-        value={foundMovie}
+        value={searchText}
         placeholder="Movie title... "
         onChange={searchMovie}
-        onKeyDown={onSearchMovie}
       />
     </div>
   );
