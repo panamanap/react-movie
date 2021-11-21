@@ -3,7 +3,7 @@ import React from 'react';
 const Login = () => {
     return (
         <div>
-            <p>Nazar Poliyulhoich</p>
+            <p>Nazar Polyukhovich</p>
         </div>
     );
 };
